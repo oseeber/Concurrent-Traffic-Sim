@@ -72,7 +72,7 @@ void TrafficLight::cycleThroughPhases()
     // Also, the while-loop should use std::this_thread::sleep_for to wait 1ms between two cycles. 
 
     srand((unsigned) time(NULL)); // providing seed value
-    double cycleDuration = (4 + (rand() % 6))*1000; //generating random number between 4 and 6
+    double cycleDuration = (4000 + (rand() % 2000)); //generating random number between 4 and 6
 
     std::chrono::time_point<std::chrono::system_clock> lastUpdate;
 
@@ -91,7 +91,7 @@ void TrafficLight::cycleThroughPhases()
             }
             _msgqueue.send(std::move(_currentPhase));
         }
-        cycleDuration = (4 + (rand() % 6))*1000;
+        cycleDuration = (4000 + (rand() % 2000));
         lastUpdate = std::chrono::system_clock::now();
     }
 }
