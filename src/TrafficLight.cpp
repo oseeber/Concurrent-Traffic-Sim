@@ -44,7 +44,7 @@ void TrafficLight::waitForGreen()
     // Once it receives TrafficLightPhase::green, the method returns.
 
     while(true) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        
         TrafficLightPhase currPhase = _msgqueue.receive();
         if (currPhase == TrafficLightPhase::green) {
             return;
@@ -71,7 +71,7 @@ void TrafficLight::cycleThroughPhases()
     // to the message queue using move semantics. The cycle duration should be a random value between 4 and 6 seconds. 
     // Also, the while-loop should use std::this_thread::sleep_for to wait 1ms between two cycles. 
 
-    srand((unsigned) time(NULL)); // providing seed value
+    srand(time(NULL)); // providing seed value
     double cycleDuration = (4000 + (rand() % 2000)); //generating random number between 4 and 6
 
     std::chrono::time_point<std::chrono::system_clock> lastUpdate;
