@@ -12,7 +12,7 @@ T MessageQueue<T>::receive()
     // to wait for and receive new messages and pull them from the queue using move semantics. 
     // The received object should then be returned by the receive function. 
     std::unique_lock<std::mutex> lck(_mtx);
-    _cond.wait(lck, [this] {return !_queue.empty()});
+    _cond.wait(lck, [this] {return !_queue.empty(); });
 
     T msg = std::move(_queue.back());
     _queue.pop_back();
